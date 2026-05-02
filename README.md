@@ -72,7 +72,7 @@ The harness ships with distilled knowledge from:
 - **Selected Alliance official documentation** — *Running Jobs*, *Python*, *Apptainer*, *Storage and File Management*, *Multi-Instance GPU*, *Transferring Data*, *Available Software*, *Monitoring Jobs*, and more, sourced from [docs.alliancecan.ca](https://docs.alliancecan.ca) (CC-BY-SA-4.0, attribution preserved in `raw/alliance-docs/`).
 - **Third-party HPC notes** — Mila's DRAC documentation, community blog posts on virtualenv-on-CVMFS, container build recipes, and similar guides (`raw/community-notes/`).
 - **Field-tested lessons** — account allocation pitfalls, MIG sizing heuristics, container-build gotchas, tmux-on-login-node failure modes, the `--no-g --no-p` rsync rule, etc. — distilled from real research workflows on Narval and Rorqual.
-- **Per-cluster canonicals** (`wiki/canonicals/`) — templated `CLAUDE.md` files for Rorqual (H100) and Narval (A100). Run the install script to substitute your account names and install to `~/.claude/CLAUDE.md`.
+- **Per-cluster canonicals** (`wiki/canonicals/`) — templated `CLAUDE.md` files for Narval (A100), Rorqual (H100), and Nibi (heterogeneous H100 / A100 / MI300A, SHARCNET). Run the install script to substitute your account names and install to `~/.claude/CLAUDE.md`. Other clusters (Fir, Trillium) get a fresh canonical drafted on first onboarding.
 
 ```
 drac-harness/

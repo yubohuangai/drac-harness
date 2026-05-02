@@ -14,6 +14,7 @@ Templated `~/.claude/CLAUDE.md` files. Run `bin/setup.sh` once, then `bin/instal
 
 - [[claude-code-narval-instructions]] — Narval (A100-40G)
 - [[claude-code-rorqual-instructions]] — Rorqual (H100-80G)
+- [[claude-code-nibi-instructions]] — Nibi (H100-80G / A100-40G / MI300A heterogeneous, SHARCNET)
 
 If your cluster doesn't have a canonical here yet, run the **"Onboard a new cluster"** workflow defined in the repo's `CLAUDE.md`. Claude will detect the cluster, run recon, draft a new canonical, and ask you to review.
 
