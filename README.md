@@ -99,7 +99,7 @@ drac-harness/
 
 ## How it works
 
-The harness follows the [LLM Wiki pattern](https://github.com/tobi/llm-wiki):
+The harness follows the [LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f):
 
 ```
 raw/                immutable source documents
