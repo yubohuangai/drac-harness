@@ -101,11 +101,12 @@ Content. Use [[wikilinks]] for cross-references.
 
 When `~/.config/drac-harness/user.conf` doesn't exist:
 
-1. Tell the user: *"This looks like your first time using drac-harness on this cluster. I'll run `bin/setup.sh` to collect your username, RAC account, and default account, then `bin/install-claude-md.sh` to install a per-cluster `~/.claude/CLAUDE.md`. After that, every future Claude session on this machine will know your cluster's rules."*
-2. Run `bin/setup.sh` (interactive — let it prompt the user).
-3. Run `bin/install-claude-md.sh`.
-4. Verify: read the first 10 lines of `~/.claude/CLAUDE.md` and confirm placeholders were substituted.
-5. Tell the user the harness is ready, and remind them their next session will pick up the new instructions automatically.
+1. Tell the user: *"This looks like your first time using drac-harness on this cluster. I'll run `bin/setup.sh` to detect your username and RAC/default accounts from `sshare -U`, then `bin/install-claude-md.sh` to install a per-cluster `~/.claude/CLAUDE.md`. After that, every future Claude session on this machine will know your cluster's rules."*
+2. Run `bin/setup.sh`. It auto-detects values without prompting in the common case (one rrg- + one def- account in `sshare -U`). It only escalates to interactive prompts if detection is ambiguous (user belongs to multiple PI groups) or both `sshare` and `id -nG` come back empty.
+3. Show the user the auto-detected values from setup.sh's output. If any look wrong, run `bin/setup.sh --interactive` to override.
+4. Run `bin/install-claude-md.sh`.
+5. Verify: read the first 10 lines of `~/.claude/CLAUDE.md` and confirm placeholders were substituted.
+6. Tell the user the harness is ready, and remind them their next session will pick up the new instructions automatically.
 
 ### Ingest a source
 
