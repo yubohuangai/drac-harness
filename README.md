@@ -16,7 +16,7 @@ Alliance clusters are powerful but unfriendly to newcomers. Setting up environme
 
 ```bash
 # 1. Clone (login node of any Alliance cluster)
-git clone https://github.com/<owner>/drac-harness.git ~/github/drac-harness
+git clone https://github.com/yubohuangai/drac-harness.git ~/github/drac-harness
 
 # 2. Install Claude Code (per Anthropic docs)
 #    https://docs.claude.com/en/docs/claude-code
@@ -31,11 +31,33 @@ claude
 On first run, Claude will:
 
 1. **Detect the cluster** via `$CC_CLUSTER` (Alliance HPC sets this) or hostname.
-2. **Run `bin/setup.sh`** to ask for your username, RAC account (`rrg-<pi>`), and default account (`def-<pi>`), and save them to `~/.config/drac-harness/user.conf`.
+2. **Run `bin/setup.sh`** to auto-detect your username and RAC/default accounts via `sshare -U` (zero input in the common case), saving them to `~/.config/drac-harness/user.conf`. Falls back to interactive prompts only if you belong to multiple PI groups or detection fails.
 3. **Run `bin/install-claude-md.sh`** to substitute your values into the per-cluster canonical and write `~/.claude/CLAUDE.md`.
 4. From the next session onward, every Claude conversation on this machine inherits the cluster-aware rules — accounts, storage paths, GPU types, module stacks, the wheelhouse, Apptainer recipes, all of it.
 
 If your cluster doesn't have a pre-built canonical (Fir, Nibi, Trillium, …), Claude runs an **"Onboard a new cluster"** workflow instead: it queries the system (`sshare -U`, `module spider`, `diskusage_report`), drafts a canonical for that cluster, asks you to review, and commits it. You can then PR the new canonical back upstream so the next user on that cluster gets it for free.
+
+---
+
+## Adopt it: fork to keep your customizations
+
+The clone above is enough to kick the tires. Once you start ingesting your own
+sources, onboarding new clusters, or accumulating wiki pages, switch to a fork
+so your customizations are backed up to *your* GitHub account and follow you
+across machines.
+
+1. Click **Fork** on https://github.com/yubohuangai/drac-harness.
+2. Re-point your local clone:
+   ```bash
+   cd ~/github/drac-harness
+   git remote set-url origin git@github.com:YOUR_USERNAME/drac-harness.git
+   git remote add upstream https://github.com/yubohuangai/drac-harness.git
+   ```
+3. From now on, `git push` saves your customizations to your fork; `git pull upstream main` pulls in upstream improvements.
+
+Generic, lab-agnostic improvements (new cluster canonicals, doc fixes, sanitized
+lessons learned) can be PR'd back upstream so the next user benefits. Personal
+or lab-specific notes stay in your fork.
 
 ---
 
