@@ -1,0 +1,25 @@
+# Backup files written by bin/install-claude-md.sh and bin/setup.sh
+*.bak
+*.bak.*
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Python build artifacts (in case users build venvs inside the repo)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Local user config — should live in ~/.config/drac-harness/, never committed.
+# Defensive ignore in case someone misplaces it.
+user.conf
+.env
+
+# Per-user CLAUDE.md substitutions (e.g. when testing with CLAUDE_MD_DEST=./)
+CLAUDE.md.bak.*
