@@ -35,10 +35,15 @@ read -rp "Cluster username [$USER]: " USER_NAME
 USER_NAME="${USER_NAME:-$USER}"
 
 # Try to detect accounts via sshare -U if available.
+# Some clusters (e.g. Rorqual) split base accounts into per-partition
+# rows (def-vislearn_cpu, rrg-vislearn_gpu, …); strip those suffixes
+# and dedupe to recover the base account names that --account= expects.
 DETECTED_ACCOUNTS=""
 if command -v sshare >/dev/null 2>&1; then
     DETECTED_ACCOUNTS=$(sshare -U --noheader --format=Account 2>/dev/null | \
-                       grep -E '^(rrg|def|ctb)-' | sort -u | tr '\n' ' ' || true)
+                       grep -E '^(rrg|def|ctb)-' | \
+                       sed -E 's/_[a-z]+[[:space:]]*$//; s/[[:space:]]+$//' | \
+                       sort -u | tr '\n' ' ' || true)
     if [ -n "$DETECTED_ACCOUNTS" ]; then
         echo
         echo "Detected accounts via 'sshare -U':$DETECTED_ACCOUNTS"
