@@ -30,6 +30,8 @@ claude --dangerously-skip-permissions   # first run only; drop the flag after se
 > hi
 ```
 
+That first message is a **trigger**, not small talk. Whatever you type (`hi`, `start`, `let's go`) activates Claude's session-start checklist defined in `CLAUDE.md` — detect your cluster, check for an existing canonical, and either run setup or kick off the "Onboard a new cluster" workflow. Without a first message, Claude waits silently.
+
 On first run, Claude will:
 
 1. **Detect the cluster** via `$CC_CLUSTER` (Alliance HPC sets this) or hostname.
