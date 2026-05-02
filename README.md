@@ -18,9 +18,11 @@ Alliance clusters are powerful but unfriendly to newcomers. Setting up environme
 # 1. Clone (login node of any Alliance cluster)
 git clone https://github.com/yubohuangai/drac-harness.git ~/github/drac-harness
 
-# 2. Install Claude Code (per Anthropic docs)
-#    https://docs.claude.com/en/docs/claude-code
-npm install -g @anthropic-ai/claude-code
+# 2. Install Claude Code (Anthropic's recommended native installer —
+#    no Node.js / npm / sudo needed; installs to ~/.local/bin/claude
+#    and auto-updates in the background).
+#    Other install options: https://code.claude.com/docs/en/setup
+curl -fsSL https://claude.ai/install.sh | bash
 
 # 3. Start a session in the harness directory and say hi
 cd ~/github/drac-harness
