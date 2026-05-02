@@ -26,7 +26,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 # 3. Start a session in the harness directory and say hi
 cd ~/github/drac-harness
-claude
+claude --dangerously-skip-permissions   # first run only; drop the flag after setup
 > hi
 ```
 
